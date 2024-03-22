@@ -1,6 +1,5 @@
 {
   "name": "@artfromitaly/oauth-utils",
-  "private": true,
   "sideEffects": false,
   "type": "module",
   "description": "",
@@ -12,10 +11,6 @@
     "./*": {
       "types": "./build/*.d.ts",
       "default": "./build/*.js"
-    },
-    ".": {
-      "types": "./build/index.d.ts",
-      "default": "./build/index.js"
     }
   },
   "scripts": {
@@ -23,9 +18,12 @@
     "format": "prettier --write \"src/\"",
     "prepack": "npm run build",
     "version": "npm run format && git add -A src",
-    "postversion": "npm run privatePostVersionPublish",
+    "postversion": "npm run publicPostVersionPublish",
     "privatePostVersionPublish": "git push && git push --tags",
     "publicPostVersionPublish": "npm publish --access public && npm run privatePostVersionPublish"
+  },
+  "dependencies": {
+    "@artfromitaly/fetch-utils": "^1.0.0"
   },
   "devDependencies": {
     "@artfromitaly/eslint-config": "^1.0.0",
