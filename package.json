@@ -1,0 +1,48 @@
+{
+  "name": "@artfromitaly/oauth-utils",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "description": "",
+  "version": "0.0.0",
+  "files": [
+    "./build"
+  ],
+  "exports": {
+    "./*": {
+      "types": "./build/*.d.ts",
+      "default": "./build/*.js"
+    },
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/\"",
+    "prepack": "npm run build",
+    "version": "npm run format && git add -A src",
+    "postversion": "npm run privatePostVersionPublish",
+    "privatePostVersionPublish": "git push && git push --tags",
+    "publicPostVersionPublish": "npm publish --access public && npm run privatePostVersionPublish"
+  },
+  "devDependencies": {
+    "@artfromitaly/eslint-config": "^1.0.0",
+    "@artfromitaly/prettier-config": "^1.0.0",
+    "@artfromitaly/tsconfig": "^1.0.0",
+    "@types/node": "^20.11.30"
+  },
+  "prettier": "@artfromitaly/prettier-config",
+  "eslintConfig": {
+    "extends": "@artfromitaly"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artfromitaly-web/oauth-utils.git"
+  }
+}
