@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/\"",
-    "prepack": "npm run build",
+    "prepare": "npm run build",
     "version": "npm run format && git add -A src",
     "postversion": "npm run publicPostVersionPublish",
     "privatePostVersionPublish": "git push && git push --tags",
