@@ -2,7 +2,7 @@ type AuthCodeArgs = {
   clientId: string
   redirectUri: string
   state?: string
-  customParams?: Record<string, string>
+  customParams?: Partial<Record<string, string | null>>
 }
 
 export function getAuthCodeUrl(
