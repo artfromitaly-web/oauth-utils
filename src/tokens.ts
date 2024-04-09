@@ -58,6 +58,26 @@ export async function refreshTokens(
   )
 }
 
+type ClientCredentialsArgs = {
+  clientId: string
+  clientSecret: string
+}
+export async function clientCredentials(
+  endpoint: string,
+  { clientId, clientSecret }: ClientCredentialsArgs,
+  mapResponse: MapTokensResponse = mapTokensResponse
+) {
+  return (await _fetchTokens(
+    endpoint,
+    {
+      client_id: clientId,
+      client_secret: clientSecret,
+      grant_type: 'client_credentials'
+    },
+    mapResponse
+  )) as Omit<Tokens, 'refresh_token'>
+}
+
 type FetchTokensArgs = {
   client_id: string
   client_secret: string
@@ -70,6 +90,9 @@ type FetchTokensArgs = {
   | {
       grant_type: 'refresh_token'
       refresh_token: string
+    }
+  | {
+      grant_type: 'client_credentials'
     }
 )
 
